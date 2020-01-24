@@ -12,15 +12,17 @@ targetContainer.append(createTimeBlockRow);
 
 //Creating column for the row
 var hourCol = $("<div>");
-hourCol.addClass("col-lg-1 hour");
+hourCol.addClass("col-lg-1 hour description").text("9am");
 $("#row0").append(hourCol);
 
+
+
 var eventCol = $("<div>");
-eventCol.addClass("col-lg-10 textarea description");
+eventCol.addClass("col-lg-10 textarea description past");
 $("#row0").append(eventCol);
 
 var saveCol = $("<div>");
-saveCol.addClass("col-lg-1 saveBtn");
+saveCol.addClass("col-lg-1 saveBtn").html("<i class=\"far fa-save\"></i>");
 $("#row0").append(saveCol);
 
 var currentDay = $("#currentDay")
