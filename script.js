@@ -1,12 +1,27 @@
 //Create timeblocks
 
 //Create variables for elements
+
+// Targeting div container where code starts
 var targetContainer = $(".container");
+
+// Creating first row
 var createRow = $("<div>");
-createRow.attr("class", "row");
-createRow.attr("id", "row0");
+createRow.addClass("row").attr("id", "row0");
 targetContainer.append(createRow);
 
+//Creating column for the row
+var hourCol = $("<div>");
+hourCol.addClass("col-lg-1 hour");
+$("#row0").append(hourCol);
+
+var timeBlockCol = $("<div>");
+timeBlockCol.addClass("col-lg-10 timeblock");
+$("#row0").append(timeBlockCol);
+
+var saveCol = $("<div>");
+saveCol.addClass("col-lg-1 saveBtn");
+$("#row0").append(saveCol);
 
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
