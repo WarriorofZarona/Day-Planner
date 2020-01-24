@@ -23,6 +23,9 @@ var saveCol = $("<div>");
 saveCol.addClass("col-lg-1 saveBtn");
 $("#row0").append(saveCol);
 
+var currentDay = $("#currentDay")
+currentDay.text(moment().format('LLLL'));
+
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
 
