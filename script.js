@@ -6,18 +6,18 @@
 var targetContainer = $(".container");
 
 // Creating first row
-var createRow = $("<div>");
-createRow.addClass("row").attr("id", "row0");
-targetContainer.append(createRow);
+var createTimeBlockRow = $("<div>");
+createTimeBlockRow.addClass("row timeblock").attr("id", "row0");
+targetContainer.append(createTimeBlockRow);
 
 //Creating column for the row
 var hourCol = $("<div>");
 hourCol.addClass("col-lg-1 hour");
 $("#row0").append(hourCol);
 
-var timeBlockCol = $("<div>");
-timeBlockCol.addClass("col-lg-10 timeblock");
-$("#row0").append(timeBlockCol);
+var eventCol = $("<div>");
+eventCol.addClass("col-lg-10 textarea description");
+$("#row0").append(eventCol);
 
 var saveCol = $("<div>");
 saveCol.addClass("col-lg-1 saveBtn");
