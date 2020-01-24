@@ -4,7 +4,9 @@ body {
   line-height: 1;
 }
 
-textarea{
+/* Where text events appear */
+
+textarea {
   background: transparent;
   border: none;
   resize: none;
@@ -21,11 +23,13 @@ textarea{
   border-bottom: 10px solid black;
 }
 
-.description{
+.description {
   white-space: pre-wrap;
 }
 
-.time-block{
+/* Class for creating the time block */
+
+.time-block {
   text-align: center;
   border-radius: 15px;
 }
@@ -33,7 +37,8 @@ textarea{
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;;
+  border-top: 1px solid white;
+  ;
 }
 
 .hour {
