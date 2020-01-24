@@ -11,22 +11,24 @@ createTimeBlockRow.addClass("row timeblock").attr("id", "row0");
 targetContainer.append(createTimeBlockRow);
 
 //Creating column for the row
+// Hour column
 var hourCol = $("<div>");
 hourCol.addClass("col-lg-1 hour description").text("9am");
 $("#row0").append(hourCol);
 
-
-
+// Event column
 var eventCol = $("<div>");
 eventCol.addClass("col-lg-10 textarea description past");
 $("#row0").append(eventCol);
 
+// Save column
 var saveCol = $("<div>");
 saveCol.addClass("col-lg-1 saveBtn").html("<i class=\"far fa-save\"></i>");
 $("#row0").append(saveCol);
 
+// Displaying current day
 var currentDay = $("#currentDay")
-currentDay.text(moment().format('LLLL'));
+currentDay.text(moment().format('dddd MMMM Do YYYY'));
 
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
