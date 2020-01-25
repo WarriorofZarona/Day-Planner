@@ -31,13 +31,6 @@ function createTimeBlock() {
     };
 };
 
-$(".textarea").on("click", function () {
-    var textInput = $("<input>");
-    textInput.attr("type", "text").addClass("description");
-    this.append(textInput);
-    console.log($("input"))
-});
-
 $(document).on("click", "button", function () {
 
     var userInput = $(this).parent().find("textarea").val();
