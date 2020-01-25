@@ -34,7 +34,9 @@ function createTimeBlock() {
 $(document).on("click", "button", function () {
 
     var userInput = $(this).parent().find("textarea").val();
+    var textRow = $(this).parent().find("textarea").attr("data-row");
     console.log(userInput);
+    console.log(textRow);
 
 });
 
