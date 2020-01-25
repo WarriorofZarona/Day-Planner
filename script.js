@@ -21,8 +21,8 @@ function createTimeBlock() {
         hourCol.addClass("col-sm-1 hour").text(hourArr[i]);
         $("#row" + i).append(hourCol);
         // Event column
-        var eventCol = $("<input>");
-        eventCol.addClass("col-sm-10 textarea").attr("id", "text" + i);
+        var eventCol = $("<textarea>");
+        eventCol.addClass("col-sm-10 description").attr("id", "text" + i);
         $("#row" + i).append(eventCol);
         // Save column
         var saveCol = $("<button>");
@@ -36,7 +36,14 @@ $(".textarea").on("click", function () {
     textInput.attr("type", "text").addClass("description");
     this.append(textInput);
     console.log($("input"))
-})
+});
+
+$(document).on("click", "button", function () {
+
+    var userInput = $(this).parent().find("textarea").val();
+    console.log(userInput);
+
+});
 
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button

@@ -6,7 +6,7 @@ body {
 
 /* Where text events appear */
 
-.textarea {
+textarea {
   background: transparent;
   border: none;
   resize: none;
