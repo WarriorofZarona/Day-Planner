@@ -6,11 +6,8 @@ currentDay.text(moment().format('dddd, MMMM Do YYYY'));
 //Create variables for elements
 var targetContainer = $(".container");
 var hourArr = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
-console.log(hourArr.length)
-Now going to try to turn it into a function
-
-    // Creates the 9am to 5pm timeblocks
-    createTimeBlock();
+// Creates the 9am to 5pm timeblocks
+createTimeBlock();
 
 function createTimeBlock() {
     for (var i = 0; i < hourArr.length; i++) {
@@ -21,7 +18,7 @@ function createTimeBlock() {
         //Creating column for the row
         // Hour column
         var hourCol = $("<div>");
-        hourCol.addClass("col-sm-1 hour description").text(hourArr[i]);
+        hourCol.addClass("col-sm-1 hour").text(hourArr[i]);
         $("#row" + i).append(hourCol);
         // Event column
         var eventCol = $("<div>");
@@ -33,6 +30,8 @@ function createTimeBlock() {
         $("#row" + i).append(saveCol);
     };
 };
+
+
 
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
