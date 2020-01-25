@@ -22,16 +22,21 @@ function createTimeBlock() {
         $("#row" + i).append(hourCol);
         // Event column
         var eventCol = $("<div>");
-        eventCol.addClass("col-sm-10 textarea description past");
+        eventCol.addClass("col-sm-10 textarea past").attr("id", "text" + i);
         $("#row" + i).append(eventCol);
         // Save column
-        var saveCol = $("<div>");
+        var saveCol = $("<button>");
         saveCol.addClass("col-sm-1 saveBtn").html("<i class=\"far fa-save\"></i>");
         $("#row" + i).append(saveCol);
     };
 };
 
-
+$(".textarea").on("click", function () {
+    var textInput = $("<input>");
+    textInput.attr("type", "text").addClass("description");
+    this.append(textInput);
+    console.log($("input"))
+})
 
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
