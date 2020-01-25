@@ -22,7 +22,7 @@ function createTimeBlock() {
         $("#row" + i).append(hourCol);
         // Event column
         var eventCol = $("<textarea>");
-        eventCol.addClass("col-sm-10 description").attr("id", "text" + i).attr("data-row, i);
+        eventCol.addClass("col-sm-10 description").attr("id", "text" + i).attr("data-row", i);
         $("#row" + i).append(eventCol);
         // Save column
         var saveCol = $("<button>");
