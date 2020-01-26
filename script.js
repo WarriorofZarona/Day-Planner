@@ -1,6 +1,7 @@
 // Displaying current day
 var currentDay = $("#currentDay")
-currentDay.text(moment().format('dddd, MMMM Do YYYY'));
+var displayCurrentDay = moment().format('dddd, MMMM Do YYYY')
+currentDay.text(moment().format(displayCurrentDay));
 
 //Create timeblocks
 //Create variables for elements
@@ -30,14 +31,16 @@ $(document).on("click", "button", function () {
     var textRow = $(this).parent().find("textarea").attr("data-row");
     var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"))
     var newEvent = new Object();
-    newEvent.currentDay = $("#currentDay").text();
+    newEvent.currentDay = displayCurrentDay;
     newEvent.row = textRow
     newEvent.text = userInput
     dayPlanner.unshift(newEvent);
+    console.log(dayPlanner);
     dayPlanner = removeDuplicates(dayPlanner, "row")
     dayPlanner.sort(function (x, y) {
         return x.row - y.row
     });
+    console.log(dayPlanner);
 
     localStorage.setItem("dayPlanner", JSON.stringify(dayPlanner));
 
@@ -91,14 +94,14 @@ function checkStorage() {
 
     var storage = JSON.parse(localStorage.getItem("dayPlanner"));
 
-    if (storage === undefined || storage === null) {
+    if (storage === undefined || storage === null || storage[0].currentDay !== displayCurrentDay) {
 
         storage = [];
 
         for (var i = 0; i < hourArr.length; i++) {
 
             var generateObj = new Object();
-            generateObj.currentDay = $("#currentDay").text();
+            generateObj.currentDay = displayCurrentDay;
             generateObj.row = i
             generateObj.text = ""
             storage.push(generateObj);
