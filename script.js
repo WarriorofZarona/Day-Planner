@@ -3,29 +3,22 @@ var currentDay = $("#currentDay")
 var displayCurrentDay = moment().format('dddd, MMMM Do YYYY')
 currentDay.text(moment().format(displayCurrentDay));
 
-//Create timeblocks
 //Create variables for elements
 var targetContainer = $(".container");
 var hourArr = [];
 
-function createHourArr() {
-
-    for (var i = 0; i < 9; i++) {
-
-        var hour = moment().hour(i + 9).format("h a");
-        hourArr.push(hour);
-
-    }
-
-}
+// When page loads:
+// Creates an array from 9am to 5pm
 createHourArr();
+// Generates the timeblocks
 createTimeBlock();
-
+// Checks if storage is empty, or if it is a new day, then creates a new blank JSON and stores it back in
 checkStorage();
-
+// If there are events in storage, this will render text events into appropriate time blocks
 renderEvents();
+// Determines what hour it is on the day planner as well as past and future hours by color
 checkTime();
-
+// When save button is clicked, text is saved for that text block
 $(document).on("click", "button", function () {
     var userInput = $(this).parent().find("textarea").val();
     var textRow = $(this).parent().find("textarea").attr("data-row");
@@ -41,9 +34,8 @@ $(document).on("click", "button", function () {
         return x.row - y.row
     });
     console.log(dayPlanner);
-
     localStorage.setItem("dayPlanner", JSON.stringify(dayPlanner));
-
+    // Adds a new entry and removes the old entry
     function removeDuplicates(array, key) {
         var lookup = {};
         var result = [];
@@ -56,7 +48,15 @@ $(document).on("click", "button", function () {
         return result;
     }
 });
+// Using moment.js, this creates an array of hours 9am to 5pm
+function createHourArr() {
+    for (var i = 0; i < 9; i++) {
+        var hour = moment().hour(i + 9).format("h a");
+        hourArr.push(hour);
+    }
+}
 
+// Using a for loop, this creates 9 time blocks displaying hour, clickable event text, and save buttons
 function createTimeBlock() {
     for (var i = 0; i < hourArr.length; i++) {
         // Creating first row
@@ -79,27 +79,21 @@ function createTimeBlock() {
     };
 };
 
+// Takes any JSON data from row property and generates into event box.
 function renderEvents() {
-
     var display = JSON.parse(localStorage.getItem("dayPlanner"));
-
     $("textarea").empty;
     for (var i = 0; i < hourArr.length; i++) {
         $("#text" + i).text(display[i].text);
-
     };
 };
 
+// If storage doesn't exist, or if it is a new day, it will generate a blank JSON template
 function checkStorage() {
-
     var storage = JSON.parse(localStorage.getItem("dayPlanner"));
-
     if (storage === undefined || storage === null || storage[0].currentDay !== displayCurrentDay) {
-
         storage = [];
-
         for (var i = 0; i < hourArr.length; i++) {
-
             var generateObj = new Object();
             generateObj.currentDay = displayCurrentDay;
             generateObj.row = i
@@ -108,42 +102,19 @@ function checkStorage() {
             localStorage.setItem("dayPlanner", JSON.stringify(storage));
         }
     }
-
     localStorage.setItem("dayPlanner", JSON.stringify(storage));
 }
 
+// This checks current time against hours 9am to 5pm and color codes time-blocks appropriately
 function checkTime() {
-
     for (var i = 0; i < hourArr.length; i++) {
         console.log("Iteration " + i + ":");
         if (moment().isSame(moment().hour(9 + i))) {
             $("#text" + i).addClass("present");
-
         } else if (moment().isBefore(moment().hour(9 + i))) {
-
             $("#text" + i).addClass("future");
         } else {
             $("#text" + i).addClass("past");
         }
-
-
-
     }
-
 }
-//In the timeblocks, there are 3 parts:
-// Display Hour, Display Time Event, Display Save Button
-
-
-// We will display from 9AM to 5PM, which is a length of 9 blocks
-
-
-// When we click on Time Event, user can input text.
-
-
-// When we click on save button, text is stored on localstorage and persists in Time Event.
-
-
-// Time blocks are color coded. Current hour displays red. Past hours display gray. Future hours display green.
-// These color codes are already in the style sheet, so we just need to add the elements to html using jQuery.
-
