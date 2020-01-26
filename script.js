@@ -1,7 +1,7 @@
 // Displaying current day
 var currentDay = $("#currentDay")
 var displayCurrentDay = moment().format('dddd, MMMM Do YYYY')
-currentDay.text(moment().format(displayCurrentDay));
+currentDay.text(displayCurrentDay);
 
 //Create variables for elements
 var targetContainer = $(".container");
