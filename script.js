@@ -49,6 +49,18 @@ $(document).on("click", "button", function () {
     });
     console.log(dayPlanner);
 
+    localStorage.setItem("dayPlanner", JSON.stringify(dayPlanner));
+
+    function renderEvents() {
+
+        $("textarea").empty;
+
+        var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"));
+
+
+
+
+    }
 
     function removeDuplicates(array, key) {
         var lookup = {};
@@ -62,18 +74,6 @@ $(document).on("click", "button", function () {
         return result;
     }
 });
-
-function renderEvents() {
-
-    $("textarea").empty;
-
-    var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"));
-
-
-
-
-}
-
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
 
