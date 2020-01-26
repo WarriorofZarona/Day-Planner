@@ -113,22 +113,13 @@ function checkTime() {
 
     for (var i = 0; i < hourArr.length; i++) {
         console.log("Iteration " + i + ":");
-        if (moment().format("H") == moment().hour(i + 9).format("H")) {
-            console.log("Current time is equal to the time block hour");
-            console.log(moment().format("H"), moment().hour(i + 9).format("H"))
-            console.log(moment().format("H") == moment().hour(i + 9).format("H"));
+        if (moment().isSame(moment().hour(9 + i))) {
             $("#text" + i).addClass("present");
 
-        } else if (moment().format("H") < moment().hour(i + 9).format("H")) {
-            console.log("Current hour is less than the time block hour");
-            console.log(moment().format("H"), moment().hour(i + 9).format("H"))
-            console.log(moment().format("H") < moment().hour(i + 9).format("H"))
+        } else if (moment().isBefore(moment().hour(9 + i))) {
 
             $("#text" + i).addClass("future");
         } else {
-            console.log("Current time is more than the time block hour");
-            console.log(moment().format("H"), moment().hour(i + 9).format("H"))
-            console.log(moment().format("H") > moment().hour(i + 9).format("H"))
             $("#text" + i).addClass("past");
         }
 
