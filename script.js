@@ -6,6 +6,8 @@ currentDay.text(moment().format('dddd, MMMM Do YYYY'));
 //Create variables for elements
 var targetContainer = $(".container");
 var hourArr = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+var dayPlanner = [];
+
 // Creates the 9am to 5pm timeblocks
 createTimeBlock();
 
@@ -36,9 +38,41 @@ $(document).on("click", "button", function () {
     var userInput = $(this).parent().find("textarea").val();
     var textRow = $(this).parent().find("textarea").attr("data-row");
     console.log(userInput);
-    console.log(textRow);
 
+    var newEvent = new Object();
+    newEvent.text = userInput
+    newEvent.row = textRow
+    dayPlanner.unshift(newEvent);
+    dayPlanner = removeDuplicates(dayPlanner, "row")
+    dayPlanner.sort(function (x, y) {
+        return x.row - y.row
+    });
+    console.log(dayPlanner);
+
+
+    function removeDuplicates(array, key) {
+        var lookup = {};
+        var result = [];
+        for (var i = 0; i < array.length; i++) {
+            if (!lookup[array[i][key]]) {
+                lookup[array[i][key]] = true;
+                result.push(array[i]);
+            }
+        }
+        return result;
+    }
 });
+
+function renderEvents() {
+
+    $("textarea").empty;
+
+    var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"));
+
+
+
+
+}
 
 //In the timeblocks, there are 3 parts:
 // Display Hour, Display Time Event, Display Save Button
