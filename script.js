@@ -9,10 +9,10 @@ var hourArr = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"]
 
 
 // Creates the 9am to 5pm timeblocks
+
 createTimeBlock();
 
 checkStorage();
-
 
 renderEvents();
 
@@ -43,7 +43,6 @@ $(document).on("click", "button", function () {
 
     localStorage.setItem("dayPlanner", JSON.stringify(dayPlanner));
 
-
     function removeDuplicates(array, key) {
         var lookup = {};
         var result = [];
@@ -57,7 +56,6 @@ $(document).on("click", "button", function () {
     }
 });
 
-
 function createTimeBlock() {
     for (var i = 0; i < hourArr.length; i++) {
         // Creating first row
@@ -67,7 +65,7 @@ function createTimeBlock() {
         //Creating column for the row
         // Hour column
         var hourCol = $("<div>");
-        hourCol.addClass("col-sm-1 hour").text(hourArr[i]);
+        hourCol.addClass("col-sm-1 hour").text(hourArr[i]).attr("data-hour", i + 9);
         $("#row" + i).append(hourCol);
         // Event column
         var eventCol = $("<textarea>");
@@ -79,8 +77,6 @@ function createTimeBlock() {
         $("#row" + i).append(saveCol);
     };
 };
-
-
 
 function renderEvents() {
 
