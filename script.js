@@ -20,20 +20,30 @@ renderEvents();
 checkTime();
 // When save button is clicked, text is saved for that text block
 $(document).on("click", "button", function () {
+    // Creating variables
     var userInput = $(this).parent().find("textarea").val();
     var textRow = $(this).parent().find("textarea").attr("data-row");
+
+    // Retrieving JSON data and stringifies it
     var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"));
+
+    // Creating new object based on current date, user Input, and what time-block it was designated by row number
     var newEvent = new Object();
     newEvent.currentDay = displayCurrentDay;
     newEvent.row = textRow;
     newEvent.text = userInput;
+    // Puts new object at beginning of JSON array
     dayPlanner.unshift(newEvent);
+    // Removes duplicate older entry based on property "row"
     dayPlanner = removeDuplicates(dayPlanner, "row");
+    // Sorts the new entry into the appropriate row spot
     dayPlanner.sort(function (x, y) {
         return x.row - y.row;
     });
+    // Stores into local storage
     localStorage.setItem("dayPlanner", JSON.stringify(dayPlanner));
-    // Adds a new entry and removes the old entry
+
+    // Checks for duplicates and removes it from the array based on row. First entry is saved, second entry is removed.
     function removeDuplicates(array, key) {
         var lookup = {};
         var result = [];
@@ -54,7 +64,7 @@ function createHourArr() {
     };
 };
 
-// Using a for loop, this creates 9 time blocks displaying hour, clickable event text, and save buttons
+// Using for loop, this creates 9 time blocks displaying hour, clickable event text, and save buttons
 function createTimeBlock() {
     for (var i = 0; i < hourArr.length; i++) {
         // Creating first row
@@ -106,11 +116,14 @@ function checkStorage() {
 // This checks current time against hours 9am to 5pm and color codes time-blocks appropriately
 function checkTime() {
     for (var i = 0; i < hourArr.length; i++) {
+        // If it is the current hour, time block will turn red
         if (moment().isSame(moment().hour(9 + i))) {
             $("#text" + i).addClass("present");
+            // If it is a future hour, it will turn green
         } else if (moment().isBefore(moment().hour(9 + i))) {
             $("#text" + i).addClass("future");
         } else {
+            // If it is a past hour, it will turn red
             $("#text" + i).addClass("past");
         };
     };
