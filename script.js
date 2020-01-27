@@ -75,15 +75,15 @@ function createTimeBlock() {
         //Creating column for the row
         // Hour column
         var hourCol = $("<div>");
-        hourCol.addClass("col-sm-1 hour").text(hourArr[i]).attr("data-hour", i + 9);
+        hourCol.addClass("col-1 hour").text(hourArr[i]).attr("data-hour", i + 9);
         $("#row" + i).append(hourCol);
         // Event column
         var eventCol = $("<textarea>");
-        eventCol.addClass("col-sm-10 description").attr("id", "text" + i).attr("data-row", i);
+        eventCol.addClass("col-10 description").attr("id", "text" + i).attr("data-row", i);
         $("#row" + i).append(eventCol);
         // Save column
         var saveCol = $("<button>");
-        saveCol.addClass("col-sm-1 saveBtn").html("<i class=\"far fa-save\"></i>");
+        saveCol.addClass("col-1 saveBtn").html("<i class=\"far fa-save\"></i>");
         $("#row" + i).append(saveCol);
     };
 };
