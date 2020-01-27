@@ -47,12 +47,12 @@ $(document).on("click", "button", function () {
     function removeDuplicates(array, key) {
         var lookup = {};
         var result = [];
-        for (var i = 0; i < array.length; i++) {
-            if (!lookup[array[i][key]]) {
-                lookup[array[i][key]] = true;
-                result.push(array[i]);
+        $.each(array, function (i, value) {
+            if (!lookup[value[key]]) {
+                lookup[value[key]] = true;
+                result.push(value);
             };
-        };
+        });
         return result;
     };
 });
@@ -67,7 +67,7 @@ function createHourArr() {
 
 // Using for loop, this creates 9 time blocks displaying hour, clickable event text, and save buttons
 function createTimeBlock() {
-    for (var i = 0; i < hourArr.length; i++) {
+    $.each(hourArr, function (i, value) {
         // Creating first row
         var createTimeBlockRow = $("<div>");
         createTimeBlockRow.addClass("row timeblock").attr("id", "row" + i);
@@ -75,7 +75,7 @@ function createTimeBlock() {
         //Creating column for the row
         // Hour column
         var hourCol = $("<div>");
-        hourCol.addClass("col-1 hour").text(hourArr[i]).attr("data-hour", i + 9);
+        hourCol.addClass("col-1 hour").text(value).attr("data-hour", i + 9);
         $("#row" + i).append(hourCol);
         // Event column
         var eventCol = $("<textarea>");
@@ -85,7 +85,7 @@ function createTimeBlock() {
         var saveCol = $("<button>");
         saveCol.addClass("col-1 saveBtn").html("<i class=\"far fa-save\"></i>");
         $("#row" + i).append(saveCol);
-    };
+    });
 };
 
 // Takes any JSON data from row property and generates into event box.
@@ -102,21 +102,22 @@ function checkStorage() {
     var storage = JSON.parse(localStorage.getItem("dayPlanner"));
     if (storage === undefined || storage === null || storage[0].currentDay !== displayCurrentDay) {
         storage = [];
-        for (var i = 0; i < hourArr.length; i++) {
+        $.each(hourArr, function (i, value) {
             var generateObj = new Object();
             generateObj.currentDay = displayCurrentDay;
             generateObj.row = i;
             generateObj.text = "";
             storage.push(generateObj);
             localStorage.setItem("dayPlanner", JSON.stringify(storage));
-        };
+        });
     };
     localStorage.setItem("dayPlanner", JSON.stringify(storage));
 };
 
 // This checks current time against hours 9am to 5pm and color codes time-blocks appropriately
 function checkTime() {
-    for (var i = 0; i < hourArr.length; i++) {
+    // for (var i = 0; i < hourArr.length; i++) {
+    $.each(hourArr, function (i, value) {
         // If it is the current hour, time block will turn red
         if (moment().isSame(moment().hour(9 + i))) {
             $("#text" + i).addClass("present");
@@ -127,5 +128,5 @@ function checkTime() {
             // If it is a past hour, it will turn gray
             $("#text" + i).addClass("past");
         };
-    };
+    });
 };
