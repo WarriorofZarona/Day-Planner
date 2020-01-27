@@ -65,7 +65,7 @@ function createHourArr() {
     };
 };
 
-// Using for loop, this creates 9 time blocks displaying hour, clickable event text, and save buttons
+// Using jQuery $.each, this creates 9 time blocks displaying hour, clickable event text, and save buttons
 function createTimeBlock() {
     $.each(hourArr, function (i, value) {
         // Creating first row
@@ -92,9 +92,9 @@ function createTimeBlock() {
 function renderEvents() {
     var display = JSON.parse(localStorage.getItem("dayPlanner"));
     $("textarea").empty;
-    for (var i = 0; i < hourArr.length; i++) {
+    $.each(hourArr, function (i, value) {
         $("#text" + i).text(display[i].text);
-    };
+    });
 };
 
 // If storage doesn't exist, or if it is a new day, it will generate a blank JSON template
@@ -116,7 +116,6 @@ function checkStorage() {
 
 // This checks current time against hours 9am to 5pm and color codes time-blocks appropriately
 function checkTime() {
-    // for (var i = 0; i < hourArr.length; i++) {
     $.each(hourArr, function (i, value) {
         // If it is the current hour, time block will turn red
         if (moment().isSame(moment().hour(9 + i))) {
