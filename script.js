@@ -24,7 +24,7 @@ $(document).on("click", "button", function () {
     var userInput = $(this).parent().find("textarea").val();
     var textRow = $(this).parent().find("textarea").attr("data-row");
 
-    // Retrieving JSON data and stringifies it
+    // Retrieving JSON data to be manipulated
     var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"));
 
     // Creating new object based on current date, user Input, and what time-block it was designated by row number
@@ -56,6 +56,7 @@ $(document).on("click", "button", function () {
         return result;
     };
 });
+
 // Using moment.js, this creates an array of hours 9am to 5pm
 function createHourArr() {
     for (var i = 0; i < 9; i++) {
