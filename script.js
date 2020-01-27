@@ -123,7 +123,7 @@ function checkTime() {
         } else if (moment().isBefore(moment().hour(9 + i))) {
             $("#text" + i).addClass("future");
         } else {
-            // If it is a past hour, it will turn red
+            // If it is a past hour, it will turn gray
             $("#text" + i).addClass("past");
         };
     };
