@@ -28,12 +28,12 @@ $(document).on("click", "button", function () {
     var dayPlanner = JSON.parse(localStorage.getItem("dayPlanner"));
 
     // Creating new object based on current date, user Input, and what time-block it was designated by row number
-    var newEvent = new Object();
-    newEvent.currentDay = displayCurrentDay;
-    newEvent.row = textRow;
-    newEvent.text = userInput;
+    var woz = new Object();
+    woz.currentDay = displayCurrentDay;
+    woz.row = textRow;
+    woz.text = userInput;
     // Puts new object at beginning of JSON array
-    dayPlanner.unshift(newEvent);
+    dayPlanner.unshift(woz);
     // Removes duplicate older entry based on property "row"
     dayPlanner = removeDuplicates(dayPlanner, "row");
     // Sorts the new entry into the appropriate row spot
